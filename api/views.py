@@ -163,7 +163,7 @@ def reserve_data(request):
         # prophetで使用できるようにtimestampをds,対象カラムをyに変更。予想するターゲットはユーザーが指定したもの。(high,low,open,closeのどれか)
 
         df = df.rename(columns={user_target: 'y'})
-        df = df.rename(columns={'timestamp': 'ds'})
+        df = df.rename(columns={'Date': 'ds'})
         # print(df)
 
         # 時系列解析の機械学習ライブラリ(prophet)で学習。

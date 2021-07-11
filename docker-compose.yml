@@ -1,0 +1,17 @@
+version: '3'  # Docker Composeのバージョン
+services:
+  web:  # コンテナに名前をつける
+    build: .  # Dockerfileがあるディレクトリへのパス
+    volumes:
+      - .:/code  # ホストPCのカレントディレクトリとコンテナ内のcodeディレクトリを同期させる
+    ports:
+      - "8000:8000"
+    command: python manage.py runserver 0.0.0.0:8000
+
+  python3:
+    restart: always
+    build: .
+    container_name: 'python3'
+    tty: true
+    volumes:
+      - .:/code

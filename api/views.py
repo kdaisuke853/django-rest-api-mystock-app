@@ -21,6 +21,7 @@ import pandas as pd
 from .forms import UploadFileForm
 from django.http import HttpResponseRedirect
 from fbprophet import Prophet
+import yfinance as yf
 
 UPLOAD_DIR = os.path.dirname(os.path.abspath(__file__)) + '/static/files/'
 
@@ -204,6 +205,28 @@ def search_values_1year(request):
     if request.method == "GET":
         target = request.GET['code_input']
 
+        #now = datetime.datetime.now()
+        #now = now.strftime("%y%m%d")
+        company_code = str(target) + '.T'
+        target_name = yf.Ticker(company_code)
+        target_data = target_name.history(period="1y")
+        target_data.to_csv('test.csv')
+        df = pd.read_csv('test.csv')
+        os.remove('test.csv')
+
+        ret_dict = df.to_dict()
+        #ret_json = target_data.to_json()
+        name = kabu_db.objects.filter(code=target)
+        name2 = list(name.values())
+        name_val = name2[0]['name']
+        ret_dict['name'] = name_val
+
+        return JsonResponse(ret_dict)
+
+    """
+    if request.method == "GET":
+        target = request.GET['code_input']
+
         now = datetime.datetime.now()
         now = now.strftime("%y%m%d")
         company_code = str(target) + '.T'
@@ -220,10 +243,10 @@ def search_values_1year(request):
             # df_time = re.search('[0-9]{4}-[0-9]{2}-[0-9]{2}', df['timestamp'])
             # df['timestamp'] = df_time.group(0)
             # df['timestamp'] = pd.DatetimeIndex(df.timestamp, name='timestamp').tz_localize('UTC').tz_convert('Asia/Tokyo')
-            """
+       
             dict2 = {'timestamp': str(df['timestamp']), 'open': df['open'], 'high': df['high'], 'low': df['low'],
                      'close': df['close'], 'volume': df['volume']}
-            """
+ 
             # 日本標準時間に変換
             # df.index = pd.DatetimeIndex(df.timestamp, name='timestamp').tz_localize('UTC').tz_convert('Asia/Tokyo')
             # csvファイルに保存
@@ -249,7 +272,7 @@ def search_values_1year(request):
             print(e.message)
             pass
         return JsonResponse(ret_dict)
-
+    """
 
 def upload_file(request):
     if request.method == 'POST':

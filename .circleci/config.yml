@@ -1,9 +1,9 @@
 version: 2.1
-jobs:
+jobs:   
   build:
     docker:
       - image: cimg/python:3.8
-    working_directory: ~/pydocker
+    working_directory: ~/pydocker3
     steps:
       - checkout
       - run:
@@ -14,8 +14,11 @@ jobs:
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
           name: docker-compose up
-
+          command: |
+            set -x
+            docker-compose up --build -d
       - run:
           name: docker-compose stop
           command: |
+            set -x
             docker-compose stop

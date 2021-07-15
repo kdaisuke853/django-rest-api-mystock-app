@@ -3,7 +3,8 @@ jobs:
   build:
     docker:
       - image: cimg/python:3.8
-    working_directory: ~/pydocker3
+      - image: continuumio/anaconda3:2019.03
+    working_directory: ~/django-rest-api-mystock-app
     steps:
       - checkout
       - run:

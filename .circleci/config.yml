@@ -17,4 +17,6 @@ jobs:
           name: manage
           command: |
             pip install -r requirements.txt
+            conda install -c conda-forge fbprophet
             python manage.py runserver
+            

@@ -6,4 +6,5 @@ yahoo_finance_api2
 yfinance
 pandas
 numpy
+pystan
 fbprophet

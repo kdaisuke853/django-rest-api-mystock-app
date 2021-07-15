@@ -16,9 +16,9 @@ jobs:
           name: docker-compose up
           command: |
             set -x
-            sudo docker-compose up --build -d
+            docker-compose up --build -d
       - run:
           name: docker-compose stop
           command: |
             set -x
-            sudo docker-compose stop
+            docker-compose stop

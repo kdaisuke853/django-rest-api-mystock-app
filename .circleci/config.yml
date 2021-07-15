@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: cimg/python:3.8
-      - image: continuumio/anaconda3:2019.03
+      #- image: continuumio/anaconda3:2019.03
     working_directory: ~/django-rest-api-mystock-app
     steps:
       - checkout
@@ -14,12 +14,6 @@ jobs:
             chmod +x ~/docker-compose
             mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
-          name: docker-compose up
+          name: manage
           command: |
-            set -x
-            docker-compose up --build -d
-      - run:
-          name: docker-compose stop
-          command: |
-            set -x
-            docker-compose stop
+            python manage.py runserver

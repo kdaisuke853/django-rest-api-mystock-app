@@ -1,3 +1,6 @@
 Django==3.2.3
 djangorestframework
 django-cors-headers
+bs4
+yfinance
+pandas

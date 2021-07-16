@@ -21,10 +21,20 @@ jobs:
             chmod +x ~/docker-compose
             mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
-          name: manage
+          name: Preparation
           command: |
             pip install -r requirements.txt
             conda install -c conda-forge fbprophet
             mv -f hdays.py /opt/conda/lib/python3.7/site-packages/fbprophet
-            python manage.py runserver
+      - run:
+          name: docker-compose up
+          command: |
+            set -x
+            docker-compose up --build -d
+            
+      - run:
+          name: docker-compose stop
+          command: |
+            set -x
+            docker-compose stop
             

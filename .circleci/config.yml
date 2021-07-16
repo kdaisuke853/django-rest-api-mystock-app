@@ -20,24 +20,8 @@ jobs:
             mv -f hdays.py /opt/conda/lib/python3.7/site-packages/fbprophet
 
       - run:
-          name: Install Docker Compose
+          name: djnagotest
           command: |
-            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-            chmod +x ~/docker-compose
-            mv ~/docker-compose /usr/local/bin/docker-compose
+            python manage.py test api
 
-      - run:
-          name: docker-compose up
-          command: |
-            apt update
-            apt install subversion
-            apt install sudo
-            set -x
-            sudo docker-compose up --build -d
-
-      - run:
-          name: docker-compose stop
-          command: |
-            set -x
-            sudo docker-compose stop
             

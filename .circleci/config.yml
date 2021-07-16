@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       #- image: continuumio/miniconda3
+      #- image: conda/miniconda3
       - image: conda/miniconda3
       #- image: continuumio/anaconda3:2019.03
       - image: cimg/python:3.8

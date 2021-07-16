@@ -3,9 +3,9 @@ jobs:
   build:
     docker:
       #- image: continuumio/miniconda3
-      - image: conda/miniconda3
       #- image: conda/miniconda3
-      #- image: continuumio/anaconda3:2019.03
+      #- image: conda/miniconda3
+      - image: continuumio/anaconda3:2019.03
       - image: cimg/python:3.8
      
       #- image: cimg/conda
@@ -25,7 +25,5 @@ jobs:
           command: |
             pip install -r requirements.txt
             conda install -c conda-forge fbprophet
-            conda uninstall -y pandas
-            conda install -y pandas==1.2.4
             python manage.py runserver
             

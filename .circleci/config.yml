@@ -6,7 +6,8 @@ jobs:
       #- image: conda/miniconda3
       #- image: conda/miniconda3
       - image: continuumio/anaconda3:2019.03
-      - image: cimg/python:3.8
+      #- image: cimg/python:3.8
+      - image: mysql:5.7
      
       #- image: cimg/conda
     working_directory: ~/django-rest-api-mystock-app

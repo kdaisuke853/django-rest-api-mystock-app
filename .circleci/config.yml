@@ -25,7 +25,6 @@ jobs:
           command: |
             pip install -r requirements.txt
             conda install -c conda-forge fbprophet
-            pip uninstall pandas
-            pip install pandas==1.2.4
+            conda update pandas
             python manage.py runserver
             

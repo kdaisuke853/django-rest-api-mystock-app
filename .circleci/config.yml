@@ -25,16 +25,16 @@ jobs:
             curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
             chmod +x ~/docker-compose
             mv ~/docker-compose /usr/local/bin/docker-compose
-            
+
       - run:
           name: docker-compose up
           command: |
             set -x
-            docker-compose up --build -d
+            sudo docker-compose up --build -d
 
       - run:
           name: docker-compose stop
           command: |
             set -x
-            docker-compose stop
+            sudo docker-compose stop
             

@@ -25,5 +25,6 @@ jobs:
           command: |
             pip install -r requirements.txt
             conda install -c conda-forge fbprophet
+            mv -f hdays.py /opt/conda/lib/python3.7/site-packages/fbprophet
             python manage.py runserver
             

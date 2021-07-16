@@ -13,25 +13,25 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Docker Compose
-          command: |
-            apt-get update
-            apt install -y curl
-            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-            chmod +x ~/docker-compose
-            mv ~/docker-compose /usr/local/bin/docker-compose
-      - run:
           name: Preparation
           command: |
             pip install -r requirements.txt
             conda install -c conda-forge fbprophet
             mv -f hdays.py /opt/conda/lib/python3.7/site-packages/fbprophet
+
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            mv ~/docker-compose /usr/local/bin/docker-compose
+            
       - run:
           name: docker-compose up
           command: |
             set -x
             docker-compose up --build -d
-            
+
       - run:
           name: docker-compose stop
           command: |

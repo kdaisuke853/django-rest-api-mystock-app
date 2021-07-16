@@ -22,6 +22,7 @@ from .forms import UploadFileForm
 from django.http import HttpResponseRedirect
 from fbprophet import Prophet
 import yfinance as yf
+from rest_framework.permissions import AllowAny
 
 UPLOAD_DIR = os.path.dirname(os.path.abspath(__file__)) + '/static/files/'
 
@@ -32,6 +33,9 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = (ProfilePermission,)  # permissonは制限、allowanyは誰でも
 
+class CreateUserView(generics.CreateAPIView):
+    serializer_class = UserSerializer
+    permission_classes = (AllowAny,)
 
 class ManageUserView(generics.RetrieveAPIView):
     serializer_class = UserSerializer

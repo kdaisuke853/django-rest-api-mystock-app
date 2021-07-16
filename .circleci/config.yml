@@ -1,7 +1,27 @@
 version: 2.1
-jobs:
+jobs:   
   build:
     docker:
+      #- image: continuumio/miniconda3
+      #- image: conda/miniconda3
+      #- image: conda/miniconda3
+      - image: continuumio/anaconda3:2019.03
       - image: cimg/python:3.8
+     
+      #- image: cimg/conda
+    working_directory: ~/django-rest-api-mystock-app
     steps:
-      - run: echo "Hello World"
+      - checkout
+      - run:
+          name: Preparation
+          command: |
+            pip install -r requirements.txt
+            conda install -c conda-forge fbprophet
+            mv -f hdays.py /opt/conda/lib/python3.7/site-packages/fbprophet
+
+      - run:
+          name: djnagotest
+          command: |
+            python manage.py test api
+
+            

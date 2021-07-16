@@ -20,8 +20,13 @@ jobs:
             mv -f hdays.py /opt/conda/lib/python3.7/site-packages/fbprophet
 
       - run:
-          name: djnagotest
+          name: djnagotest-api
           command: |
             python manage.py test api
+
+      - run:
+          name: djnagotest-drfapi
+          command: |
+            python manage.py test drfapi
 
             

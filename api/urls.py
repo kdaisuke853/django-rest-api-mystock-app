@@ -1,8 +1,8 @@
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from api.views import TaskViewSet, UserViewSet, ManageUserView, CreateUserView
-from api.views import loginfunc, input_func, search_value, search_values_1year, upload_file, reserve_data
+from api.views import TaskViewSet, UserViewSet, ManageUserView
+from api.views import loginfunc, input_func, search_value, search_values_1year, upload_file, reserve_data, CreateUserView
 
 
 router = routers.DefaultRouter()

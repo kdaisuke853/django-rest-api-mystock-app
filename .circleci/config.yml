@@ -29,6 +29,9 @@ jobs:
       - run:
           name: docker-compose up
           command: |
+            apt update
+            apt install subversion
+            apt install sudo
             set -x
             sudo docker-compose up --build -d
 
